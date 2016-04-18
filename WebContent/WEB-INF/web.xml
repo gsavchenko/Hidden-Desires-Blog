@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>BlogSite</display-name>
+  <description>
+  Cool Blog site: For Java Project
+  </description>
+  <context-param>
+    <description>
+  This is just the admin account that the user can contact for questions
+  </description>
+    <param-name>webmaster</param-name>
+    <param-value>kandrade.kca@gmail.com</param-value>
+  </context-param>
+  <servlet>
+    <description>
+ 	Write Log data
+  </description>
+    <servlet-name>Write</servlet-name>
+    <servlet-class>blog.Write</servlet-class>
+  </servlet>
+  <servlet>
+    <description> Show log</description>
+    <servlet-name>Show</servlet-name>
+    <servlet-class>blog.Show</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Write</servlet-name>
+    <url-pattern>/Write</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Show</servlet-name>
+    <url-pattern>/Show</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
