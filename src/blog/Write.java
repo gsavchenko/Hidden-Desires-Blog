@@ -1,14 +1,15 @@
 package blog;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URLEncoder;
+import java.io.IOException; 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.mysql.jdbc.Statement;
+
+import java.io.*;
+import java.sql.*;
+import java.net.URLEncoder;
 
 /**
  * Servlet implementation class Write
@@ -68,8 +69,6 @@ public class Write extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	
-		 // doPost just calls goGet 
-        doGet(request,response);
 	}
 
 	// writeData checks for a valid password, 
@@ -89,7 +88,7 @@ public class Write extends HttpServlet {
 	            {
 	                // write the log entry 
 	                int written =  stmt.executeUpdate("insert into blog (data) values (\"" + data + "\")");
-	                out.println("Your entry was recorded. <br><br><br><a href=\"/blog/Show\"<View Entries</a>");
+	                out.println("Your entry was recorded. <a href=\"/blog/Show\"<View Entries</a>");//this is suppose to show a link  to the show class
 	            }
 	            else
 	            {
