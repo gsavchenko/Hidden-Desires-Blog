@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.*;
+import java.text.*;
+import java.util.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.sql.*;
 import java.net.URLEncoder;
 
@@ -73,7 +77,8 @@ public class Write extends HttpServlet {
 
 	// writeData checks for a valid password, 
 	   // and writes the log entry to the db table 
-	    private void writeData(String data, String password)
+	    @SuppressWarnings("deprecation")
+		private void writeData(String data, String password)
 	    {
 	        try
 	        {
@@ -88,7 +93,9 @@ public class Write extends HttpServlet {
 	            {
 	                // write the log entry 
 	                int written =  stmt.executeUpdate("insert into blog (data) values (\"" + data + "\")");
-	                out.println("Your entry was recorded. <a href=\"/blog/Show\"<View Entries</a>");//this is suppose to show a link  to the show class
+	                //out.println("<a href=\"blog/Show.java\"<View Entries</a>");
+	                out.println("Your entry was recorded,<a href=\"Show\">View Entries</a>");
+	                //this is suppose to show a link  to the show class
 	            }
 	            else
 	            {

@@ -43,7 +43,7 @@ public class Show extends HttpServlet {
     		Statement st = mydb.connect();
     		
     		//select the log entries from the db (most recent)
-    		ResultSet rs = st.executeQuery("SELECT data, DATE_FORMAT(created,'%M %d, %Y %H:%i') as nice_date from blog order by created desc limit " + start + ", " + numPerPage);
+    		ResultSet rs = st.executeQuery("SELECT data, DATE_FORMAT(time,'%M %d, %Y %H:%i') as nice_date from blog order by time desc limit " + start + ", " + numPerPage);
     		int counter = 0; 
     		while(rs.next()) { 
     			//this will go through the list on entities and printe dem on the page 
@@ -77,7 +77,7 @@ public class Show extends HttpServlet {
 		
 		//this is just the header for the posts
 		out.println("<html><head<title>Java Web log</title></head>");
-		out.println("<body bgcolor=\"white\">");
+		out.println("<body bgcolor=\"ivory\">");
 		out.println("<h1> My Web log </h1>");
 		
 		int start;
