@@ -23,9 +23,18 @@
     <servlet-name>Show</servlet-name>
     <servlet-class>blog.Show</servlet-class>
   </servlet>
+  <servlet>
+    <description> Show Post</description>
+    <servlet-name>PostController</servlet-name>
+    <servlet-class>blog.PostController</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Write</servlet-name>
     <url-pattern>/Write</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PostController</servlet-name>
+    <url-pattern>/PostController</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Show</servlet-name>

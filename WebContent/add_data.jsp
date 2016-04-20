@@ -7,7 +7,10 @@
 </head>
 
 <body bgcolor="Ivory">
-
+<div id="navbar">
+		<a href="Show">Home</a>
+		<a href="Write">Add Post</a>
+	</div>
 <form action="Write">
 Log Entry:<br>
 <%

@@ -20,7 +20,7 @@ import java.net.URLEncoder;
  * 
  * this will display the posts on another page 
  */
-@WebServlet(name = "ShowD", urlPatterns = { "/ShowD" })
+@WebServlet("/Show")
 public class Show extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static int numPerPage = 10; //this is the number of posts per page
@@ -43,20 +43,28 @@ public class Show extends HttpServlet {
     		Statement st = mydb.connect();
     		
     		//select the log entries from the db (most recent)
-    		ResultSet rs = st.executeQuery("SELECT data, DATE_FORMAT(time,'%M %d, %Y %H:%i') as nice_date from blog order by time desc limit " + start + ", " + numPerPage);
+    		ResultSet rs = st.executeQuery("SELECT idBlog, data, DATE_FORMAT(time,'%M %d, %Y %H:%i') as nice_date from blog order by time desc limit " + start + ", " + numPerPage);
     		int counter = 0; 
     		while(rs.next()) { 
     			//this will go through the list on entities and printe dem on the page 
-    			out.println("<br>"+ rs.getString("nice_date") + "</b><br>" + rs.getString("data") + "<br><br>");
+    			if ((counter % 2) == 0) {
+    				out.println("<div class='apost'>");
+    			} else {
+    				out.println("<div class='bpost'>");
+    			}
+    			out.println("<br><b>"+ rs.getString("nice_date") + "</b><br>");
+    			out.println("<a href='PostController?blogId=" + rs.getInt("idBlog") + "'>View This Post</a><br>");
+    			out.println(rs.getString("data"));
+    			out.println("</div>");
     			counter++;
     		}
     		
     		if(counter == numPerPage) {
     			int next = start + numPerPage;
-    			out.println("<br><br><a href=\"/blog/Show?start=" + next + "\">More</a><br><br>");
+    			out.println("<br><br><a href=\"/BlogSite/Show?start=" + next + "\">More</a><br><br>");
     		}
     		else {//this will happen if there are no more posts to show
-    			out.println("That's it.  Go back to <a href=\"/blog/Show\">The Beginning</a> <br>");
+    			out.println("That's it.  Go back to <a href=\"/BlogSite/Show\">The Beginning</a> <br>");
     		}
     		//disconnect from the db
     		mydb.disconnect(st);
@@ -76,10 +84,10 @@ public class Show extends HttpServlet {
 		out = response.getWriter();
 		
 		//this is just the header for the posts
-		out.println("<html><head<title>Java Web log</title></head>");
-		out.println("<body bgcolor=\"ivory\">");
-		out.println("<h1> My Web log </h1>");
-		
+		out.println("<html><head<title>Java Web log</title><link href='main.css' rel='stylesheet' /></head>");
+		out.println("<body bgcolor=\"ivory\"><center>");
+		out.println("<div id='navbar'><a href='Show'>Home</a><a href='Write'>Add Post</a></div>");
+		out.println("<h1>The Drumpf Blog</h1>");
 		int start;
 		try {
             start = Integer.parseInt( request.getParameter("start") );
@@ -91,9 +99,8 @@ public class Show extends HttpServlet {
         // call the printEntries method to display log entries 
         printEntries(start);
 
-        out.println("</body>");
+        out.println("</center></body>");
         out.println("</html>");
-
 	}
 
 	/**
