@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+body {
+	background-color: #1eb1fe;
+}
+h1 {
+	font-family: Courier New;
+}
+form {
+	display: inline-block;
+	text-align: center;
+	background-color:#fe6b1e;
+}
+
+#navbar {
+	margin:20px;
+	text-align:center;
+	width:50%;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	background-color: #aaaaaa;
+}
+
+.boxme {
+	display: inline-block;
+    width: 150px;
+    height: 25px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
